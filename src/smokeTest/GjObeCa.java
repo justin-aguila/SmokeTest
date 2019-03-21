@@ -42,7 +42,7 @@ public class GjObeCa {
 	final By GO_BUTTON = By.id("edit-submit");
 	final By TEXT_BOX = By.id("edit-jobdetails");
 	final By DAY_SELECTION = By.xpath("//span[contains(text(),'Evening')]");
-	final By TIME_SELECTION = By.xpath("//label[contains(text(),'pm')]");
+	final By TIME_SELECTION = By.xpath("//*[@id=\"edit-evening1\"]/div[1]/label");
 	final By BUSINESS_CHECKBOX = By.id("edit-client-type-2");
 	final By BUSINESS_NAME = By.id("edit-businessvalue");
 	final By ADDRESS_BOX = By.id("street_number");

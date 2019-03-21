@@ -21,7 +21,7 @@ public class GjObeUS {
 	ChromeDriver driver;
 	WebDriverWait wait;
 	
-	final String SITE_URL = "https://request.1800gotjunk.com.au/";
+	final String SITE_URL = "https://request.1800gotjunk.com";
 	final String HOME_TITLE = "Online Booking Engine | 1-800-GOT-JUNK?";
 	final String TEXT_CONTENT = "This is a test booking.";
 	final String TEST_USER_FIRSTNAME = "QA Justin";
@@ -42,7 +42,7 @@ public class GjObeUS {
 	final By GO_BUTTON = By.id("edit-submit");
 	final By TEXT_BOX = By.id("edit-jobdetails");
 	final By DAY_SELECTION = By.xpath("//span[contains(text(),'Evening')]");
-	final By TIME_SELECTION = By.xpath("//label[contains(text(),'pm')]");
+	final By TIME_SELECTION = By.xpath("//*[@id=\"edit-evening1\"]/div[1]/label");
 	final By BUSINESS_CHECKBOX = By.id("edit-client-type-2");
 	final By BUSINESS_NAME = By.id("edit-businessvalue");
 	final By ADDRESS_BOX = By.id("street_number");

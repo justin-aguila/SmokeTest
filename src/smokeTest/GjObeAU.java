@@ -21,8 +21,8 @@ public class GjObeAU {
 	ChromeDriver driver;
 	WebDriverWait wait;
 	
-	final String SITE_URL = "https://request.1800gotjunk.com/";
-	final String HOME_TITLE = "Online Booking Engine | 1-800-GOT-JUNK?";
+	final String SITE_URL = "https://request.1800gotjunk.com.au";
+	final String HOME_TITLE = "Online Booking Engine | 1800-GOT-JUNK?";
 	final String TEXT_CONTENT = "This is a test booking.";
 	final String TEST_USER_FIRSTNAME = "QA Justin";
 	final String TEST_USER_LASTNAME = "OBE Auto Test AU";
@@ -31,7 +31,7 @@ public class GjObeAU {
 	final String TEST_USER_PHONENUMBER1 = "999";
 	final String TEST_USER_PHONENUMBER2 = "9999999";
 	final String TEST_USER_STREET = "123 Test Street";
-	final String TEST_USER_STATE = "BC";
+	final String TEST_USER_STATE = "VI";
 	final String TEST_USER_CITY = "Testerville";
 	final String TEST_USER_COUNTRY = "Australia";
 	final String TEST_ZIP = "0001";
@@ -42,7 +42,7 @@ public class GjObeAU {
 	final By GO_BUTTON = By.id("edit-submit");
 	final By TEXT_BOX = By.id("edit-jobdetails");
 	final By DAY_SELECTION = By.xpath("//span[contains(text(),'Evening')]");
-	final By TIME_SELECTION = By.xpath("//label[contains(text(),'pm')]");
+	final By TIME_SELECTION = By.xpath("//*[@id=\"edit-evening1\"]/div[1]/label");
 	final By BUSINESS_CHECKBOX = By.id("edit-client-type-2");
 	final By BUSINESS_NAME = By.id("edit-businessvalue");
 	final By ADDRESS_BOX = By.id("street_number");
@@ -136,9 +136,9 @@ public class GjObeAU {
 				ExpectedConditions.elementToBeClickable(CITY_BOX));
 				cityBox.sendKeys(TEST_USER_CITY);	
 								
-		WebElement stateBox = wait.until(
+		/*WebElement stateBox = wait.until(
 				ExpectedConditions.elementToBeClickable(STATE_BOX));
-				stateBox.sendKeys(TEST_USER_STATE);
+				stateBox.sendKeys(TEST_USER_STATE); */
 				
 		WebElement firstNameBox = wait.until(
 				ExpectedConditions.elementToBeClickable(FIRSTNAME_BOX));
