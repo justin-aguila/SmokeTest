@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,10 +24,10 @@ public class SshFP {
 	final String SITE_URL = "https://o2ebrands.force.com/shackshine/login";
 	final String HOME_TITLE = "Login | Shack Shine";
 	final String USER_LOGIN ="sshcanada.fp.tester@shackshine.com.prod";
-	final String PASSWORD_LOGIN = "sshaccesspw6";
-	final String TEST_USER_FIRSTNAME = "QA_Justin";
+	final String PASSWORD_LOGIN = "sshaccesspw2";
+	final String TEST_USER_FIRSTNAME = "QA Justin";
 	final String TEST_USER_LASTNAME = "AutoTest";
-	final String TEST_USER_EMAILADDRESS = "justin.aguila@o2ebrands.com";
+	final String TEST_USER_EMAILADDRESS = "o2esqa@yahoo.com";
 	final String TEST_USER_PHONENUMBER = "9999999999";
 	final String TEST_USER_STREET = "123 Test Street";
 	final String TEST_USER_PROVINCE = "BC";
@@ -60,7 +61,7 @@ public class SshFP {
 	final By CLICK_GET_APPOINTMENTS = By.xpath("//*[@id=\"AN-BookAppointmentForm\"]/div[8]");
 	final By SELECT_APPOINTMENT = By.xpath("//*[@id=\"AN-SlotsContainer\"]/div[5]/div[2]");
 	final By CONFIRM_BOOKING = By.xpath("//*[@id=\"topButtonRow\"]/input[9]");
-	final By NAV_TO_ESTIMATE = By.xpath("//a[contains(text(),'Shack Shine - QA_Justin AutoTest')]");
+	final By NAV_TO_ESTIMATE = By.xpath("//a[contains(text(),'Shack Shine - QA Justin AutoTest')]");
 	final By ADD_LINE_ITEM = By.xpath("//input[@title='Add Line Item']");
 	final By FIRST_LINE_ITEM = By.id("01u1500000Pajyx");
 	final By ESTIMATE_SELECT = By.xpath("//input[@title='Select']");
@@ -69,8 +70,8 @@ public class SshFP {
 	final By ESTIMATE_EDIT = By.xpath("//input[@title='Edit']");
 	final By PROMO_FIELD = By.id("CF00N1500000H6ank");
 	final By GENERATE_SDOCS = By.xpath("//input[@title='Generate Docs']");
-	final By ESTIMATE_SDOC = By.xpath("//input[@name='j_id0:j_id5:j_id49:j_id51:j_id52:j_id57:0:j_id59']");
-	final By PROPOSAL_SDOC = By.xpath("//input[@name='j_id0:j_id5:j_id49:j_id51:j_id52:j_id57:7:j_id59']");
+	final By ESTIMATE_SDOC = By.xpath("//input[@name='j_id0:j_id5:j_id49:j_id51:j_id52:j_id57:1:j_id59']");
+	final By PROPOSAL_SDOC = By.xpath("//input[@name='j_id0:j_id5:j_id49:j_id51:j_id52:j_id57:8:j_id59']");
 	final By NEXT_STEP_SDOC = By.xpath("//input[@name='j_id0:j_id5:j_id49:j_id51:j_id52:j_id55']");
 	final By GENERATED = By.xpath("//span[contains(text(),'Generated')]");
 	final By EMAIL_SELECTED = By.xpath("//a[contains(text(),'Email Selected Docs')]");
@@ -79,7 +80,8 @@ public class SshFP {
 	final By ADD_PAYMENT = By.xpath("//input[@title='New Payment']");
 	final By PAYMENT_SAVE = By.xpath("//input[@title='Save']");
 	final By PAYMENT_AMOUNT_FIELD = By.id("00N1500000H6alj");
-	final By NAV_TO_OPPORTUNITY = By.xpath("//a[contains(text(),'Shack Shine - QA_Justin AutoTest')]");
+	final By NAV_TO_OPPORTUNITY = By.xpath("//a[contains(text(),'Shack Shine - QA Justin AutoTest')]");
+	
 	
 	
 	
@@ -90,6 +92,7 @@ public class SshFP {
 		
 		driver = new ChromeDriver();
 		wait = new WebDriverWait(driver, 15);
+		driver.manage().window().maximize();
 	}
 	
 	
@@ -211,9 +214,12 @@ public class SshFP {
 	
 	public void scheduleService() throws InterruptedException {
 
-		Thread.sleep(1000);
+		Thread.sleep(2500);
 				
 		driver.switchTo().frame("09D15000001SVUf_06615000003N7hK");
+		
+		Select ServiceType = new Select(driver.findElement(By.id("AN-ServiceTypeInput")));
+		   ServiceType.selectByVisibleText("SS - On-Site Estimate");
 		
 		WebElement getAppointment = wait.until(
 				ExpectedConditions.elementToBeClickable(CLICK_GET_APPOINTMENTS));
@@ -234,6 +240,10 @@ public class SshFP {
 				confirmBooking.click();
 				
 	    Thread.sleep(4000);
+	    
+	    String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
+		Assert.assertTrue(bodyText.contains("On-Site Estimate Booked"));
+		System.out.println("Status is correct: On-Site Estimate Booked");
 					
 	}
 	
@@ -307,7 +317,7 @@ public class SshFP {
 						ExpectedConditions.elementToBeClickable(NEXT_STEP_SDOC));
 						nextStepButton.click();
 	
-		Thread.sleep(12000);	
+		Thread.sleep(20000);	
 		
 		WebElement emailSelectedSdocs = wait.until(
 						ExpectedConditions.elementToBeClickable(EMAIL_SELECTED));
@@ -332,6 +342,17 @@ public class SshFP {
 						ExpectedConditions.elementToBeClickable(NAVIGATE_TO_OPPORTUNITY));
 						navigateOpportunity.click();
 	
+		String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
+		Assert.assertTrue(bodyText.contains("Estimate Presented"));
+		System.out.println("Status is correct: Estimate Presented");	
+				
+		Thread.sleep(15000);	
+		
+		driver.navigate().refresh();
+						
+		String bodyText2 = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
+		Assert.assertTrue(bodyText2.contains("Sold - Not Yet Scheduled"));
+		System.out.println("Status is correct: Sold - Not Yet Scheduled");						
 		
 	}
 		
@@ -357,7 +378,11 @@ public class SshFP {
 					ExpectedConditions.elementToBeClickable(NAV_TO_OPPORTUNITY));
 					navigateOpportunity.click();
 			
-			
+		
+		String bodyText3 = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
+			   Assert.assertTrue(bodyText3.contains("Paid"));
+			   System.out.println("Status is correct: Paid");					
+					
 		}
 	
 	
@@ -381,7 +406,7 @@ public class SshFP {
 		
 		PaymentWorkflow();
 		
-		driver.quit();
+		//driver.quit();
 		
 	}
 

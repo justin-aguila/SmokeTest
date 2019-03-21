@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -24,9 +25,9 @@ public class GjFP {
 	final String HOME_TITLE = "Login | 1-800-GOT-JUNK?";
 	final String USER_LOGIN ="gjcanada.fp.tester@1800gotjunk.com.prod";
 	final String PASSWORD_LOGIN = "gotjunkaccesspw4";
-	final String TEST_USER_FIRSTNAME = "QA_Justin";
+	final String TEST_USER_FIRSTNAME = "QA Justin";
 	final String TEST_USER_LASTNAME = "AutoTest";
-	final String TEST_USER_EMAILADDRESS = "justin.aguila@o2ebrands.com";
+	final String TEST_USER_EMAILADDRESS = "o2esqa@yahoo.com";
 	final String TEST_USER_PHONENUMBER = "9999999999";
 	final String TEST_USER_STREET = "123 Test Street";
 	final String TEST_USER_PROVINCE = "BC";
@@ -61,7 +62,7 @@ public class GjFP {
 	final By CLICK_GET_APPOINTMENTS = By.xpath("//*[@id=\"AN-BookAppointmentForm\"]/div[7]");
 	final By SELECT_APPOINTMENT = By.xpath("//*[@id=\"AN-SlotsContainer\"]/div[5]/div[2]");
 	final By CONFIRM_BOOKING = By.xpath("//*[@id=\"topButtonRow\"]/input[8]");
-	final By NAV_TO_ESTIMATE = By.xpath("//a[contains(text(),'1-800-GOT-JUNK? - QA_Justin AutoTest')]");
+	final By NAV_TO_ESTIMATE = By.xpath("//a[contains(text(),'1-800-GOT-JUNK? - QA Justin AutoTest')]");
 	final By ADD_LINE_ITEM = By.xpath("//input[@title='Add Line Item']");
 	final By FIRST_LINE_ITEM = By.id("01u1500000PakLD");
 	final By ESTIMATE_SELECT = By.xpath("//input[@title='Select']");
@@ -81,12 +82,14 @@ public class GjFP {
 	final By PAYMENT_SAVE = By.xpath("//input[@title='Save']");
 	final By PAYMENT_AMOUNT_FIELD = By.id("00N1500000H6alj");
 	final By PAYMENT_TYPE_FIELD = By.id("CF00N1500000IRufv");
-	final By NAV_TO_OPPORTUNITY = By.xpath("//a[contains(text(),'1-800-GOT-JUNK? - QA_Justin AutoTest')]");
+	final By NAV_TO_OPPORTUNITY = By.xpath("//a[contains(text(),'1-800-GOT-JUNK? - QA Justin AutoTest')]");
 	final By NEW_IACCEPT = By.xpath("//input[@title='New I Accept']");
 	final By CONTINUE_IACCEPT = By.xpath("//input[@title='Continue']");
 	final By ACCEPTED_BY = By.id("00N1500000IRvrM"); 
 	final By ACCEPT_EMAIL = By.id("00N1500000IRvrO");
 	final By I_ACCEPT_CHECKBOX = By.id("00N1500000IRvrP");
+	final By JOB_BOOKED_CONFIRM = By.id("00N1500000H6ak1_ileinner");
+
 	
 	@BeforeMethod
 	public void setUp() {
@@ -95,6 +98,7 @@ public class GjFP {
 		
 		driver = new ChromeDriver();
 		wait = new WebDriverWait(driver, 15);
+		driver.manage().window().maximize();
 	}
 	
 	
@@ -216,9 +220,12 @@ public class GjFP {
 	
 	public void scheduleService() throws InterruptedException {
 
-		Thread.sleep(1000);
+		Thread.sleep(2500);
 				
 		driver.switchTo().frame("09D15000001SVUf_06615000003N7hK");
+		
+		Select ServiceType = new Select(driver.findElement(By.id("AN-ServiceTypeInput")));
+		   ServiceType.selectByVisibleText("GJ - On-Site Estimate");
 		
 		WebElement getAppointment = wait.until(
 				ExpectedConditions.elementToBeClickable(CLICK_GET_APPOINTMENTS));
@@ -238,7 +245,15 @@ public class GjFP {
 				ExpectedConditions.elementToBeClickable(CONFIRM_BOOKING));
 				confirmBooking.click();
 				
-	    Thread.sleep(4000);
+				Thread.sleep(5000);
+		
+			
+			String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
+			Assert.assertTrue(bodyText.contains("On-Site Estimate Booked"));
+			System.out.println("Status is correct: On-Site Estimate Booked");
+
+				
+	    Thread.sleep(2000);
 					
 	}
 	
@@ -312,7 +327,7 @@ public class GjFP {
 						ExpectedConditions.elementToBeClickable(NEXT_STEP_SDOC));
 						nextStepButton.click();
 	
-		Thread.sleep(12000);	
+		Thread.sleep(20000);	
 		
 		WebElement emailSelectedSdocs = wait.until(
 						ExpectedConditions.elementToBeClickable(EMAIL_SELECTED));
@@ -336,6 +351,12 @@ public class GjFP {
 		WebElement navigateOpportunity = wait.until(
 						ExpectedConditions.elementToBeClickable(NAVIGATE_TO_OPPORTUNITY));
 						navigateOpportunity.click();
+						
+		Thread.sleep(1500);	
+						
+						String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
+						Assert.assertTrue(bodyText.contains("Estimate Presented"));
+						System.out.println("Status is correct: Estimate Presented");
 	
 		
 	}
@@ -362,6 +383,12 @@ public class GjFP {
 		WebElement navigateOpportunity = wait.until(
 					ExpectedConditions.elementToBeClickable(NAV_TO_OPPORTUNITY));
 					navigateOpportunity.click();
+					
+		Thread.sleep(1500);	
+					
+					String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
+					Assert.assertTrue(bodyText.contains("Paid"));
+					System.out.println("Status is correct: Paid");
 			
 			
 		}
@@ -429,7 +456,7 @@ public class GjFP {
 		
 		iAcceptWorkflow();
 		
-		driver.quit();
+		//driver.quit();
 		
 	}
 

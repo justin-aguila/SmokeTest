@@ -23,10 +23,10 @@ public class SshSC {
 	final String SITE_URL = "https://o2ebrands.my.salesforce.com/";
 	final String HOME_TITLE = "Login | Salesforce";
 	final String USER_LOGIN ="ssh.sc@shackshine.com.prod";
-	final String PASSWORD_LOGIN = "sshaccesspw1";
-	final String TEST_USER_FIRSTNAME = "QA_Justin";
+	final String PASSWORD_LOGIN = "sshaccesspw2";
+	final String TEST_USER_FIRSTNAME = "QA Justin";
 	final String TEST_USER_LASTNAME = "SC AutoTest";
-	final String TEST_USER_EMAILADDRESS = "justin.aguila@o2ebrands.com";
+	final String TEST_USER_EMAILADDRESS = "o2esqa@yahoo.com";
 	final String TEST_USER_PHONENUMBER = "9999999999";
 	final String TEST_USER_STREET = "123 Test Street";
 	final String TEST_USER_PROVINCE = "BC";
@@ -191,7 +191,7 @@ public class SshSC {
 		
 		bos2Workflow();
 		
-		driver.quit();
+		//driver.quit();
 		
 		
 		

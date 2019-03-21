@@ -23,13 +23,13 @@ public class W1dSC {
 	final String SITE_URL = "https://o2ebrands.my.salesforce.com/";
 	final String HOME_TITLE = "Login | Salesforce";
 	final String USER_LOGIN ="w1d.sc@wow1day.com.prod";
-	final String PASSWORD_LOGIN = "wow1dayaccesspw6";
-	final String TEST_USER_FIRSTNAME = "QA_Justin";
+	final String PASSWORD_LOGIN = "wow1dayaccesspw1";
+	final String TEST_USER_FIRSTNAME = "QA Justin";
 	final String TEST_USER_LASTNAME = "SC AutoTest";
-	final String TEST_USER_EMAILADDRESS = "justin.aguila@o2ebrands.com";
+	final String TEST_USER_EMAILADDRESS = "o2esqa@yahoo.com";
 	final String TEST_USER_PHONENUMBER = "9999999999";
 	final String TEST_USER_STREET = "123 Test Street";
-	final String TEST_USER_PROVINCE = "BC";
+	final String TEST_USER_PROVINCE = "TT";
 	final String TEST_USER_CITY = "Testerville";
 	final String ZIPFIELD ="W1W1W1";
 	
@@ -193,7 +193,7 @@ public class W1dSC {
 		
 		bos2Workflow();
 		
-		driver.quit();
+		//driver.quit();
 		
 		
 		
