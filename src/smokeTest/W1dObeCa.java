@@ -25,13 +25,12 @@ public class W1dObeCa {
 	final String HOME_TITLE = "WOW 1 DAY PAINTING | Online Booking Engine";
 	final String TEXT_CONTENT = "This is a test booking.";
 	final String TEST_USER_FIRSTNAME = "QA Justin";
-	final String TEST_USER_LASTNAME = "OBE Auto Test";
+	final String TEST_USER_LASTNAME = "OBE Auto Test CA";
 	final String TEST_USER_EMAILADDRESS = "o2esqa@yahoo.com";
 	final String TEST_USER_UNIT = "123";
-	final String TEST_USER_PHONENUMBER1 = "999";
-	final String TEST_USER_PHONENUMBER2 = "9999999";
+	final String TEST_USER_PHONENUMBER1 = "999-999-9999";
 	final String TEST_USER_STREET = "123 Test Street";
-	final String TEST_USER_STATE = "CA";
+	final String TEST_USER_STATE = "British Columbia";
 	final String TEST_USER_CITY = "Testerville";
 	final String TEST_USER_COUNTRY = "Canada";
 	final String TEST_ZIP = "W1W1W1";
@@ -44,9 +43,9 @@ public class W1dObeCa {
 	final By TEXT_BOX = By.id("edit-details");
 	final By DAY_SELECTION = By.xpath("//*[@id=\"edit-wrapper3--2\"]/div/div[2]/label/div");
 	final By TIME_SELECTION = By.xpath("//*[@id=\"edit-day3-morning-appointments--2\"]/div[1]/label");
-	final By ADDRESS_BOX = By.id("edit-address");
-	final By CITY_BOX = By.id("edit-city");
-	final By STATE_BOX = By.id("edit-state");
+	final By ADDRESS_BOX = By.id("street_number");
+	final By CITY_BOX = By.id("locality");
+	final By STATE_BOX = By.id("administrative_area_level_1");
 	final By FIRSTNAME_BOX = By.id("edit-first-name");
 	final By LASTNAME_BOX = By.id("edit-last-name");
 	final By EMAIL_BOX = By.id("edit-email");
@@ -122,7 +121,7 @@ public class W1dObeCa {
 				cityBox.sendKeys(TEST_USER_CITY);	
 								
 		Select stateSelect = new Select(driver.findElement(STATE_BOX));
-			   stateSelect.selectByVisibleText("California");
+			   stateSelect.selectByVisibleText("British Columbia");
 			   
 		WebElement notesBox = wait.until(
 				ExpectedConditions.elementToBeClickable(NOTES_BOX));

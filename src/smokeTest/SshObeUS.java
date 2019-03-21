@@ -143,7 +143,7 @@ public class SshObeUS {
 				cityBox.sendKeys(TEST_USER_CITY);	
 										
 		Select stateSelect = new Select(driver.findElement(STATE_BOX));
-				stateSelect.selectByVisibleText("British Columbia");
+				stateSelect.selectByVisibleText("California");
 				
 					
 		WebElement firstNameBox = wait.until(
