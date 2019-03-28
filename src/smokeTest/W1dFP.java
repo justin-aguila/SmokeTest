@@ -242,6 +242,10 @@ public class W1dFP {
 				
 	    Thread.sleep(4000);
 	    
+	    String bodyText2 = driver.findElement(By.id("lookup01s15000001zfmdPricebook2")).getText();
+		Assert.assertTrue(bodyText2.contains("Test Franchise USA - W1D Residential"));
+		System.out.println("Opportunity has correct pricebook: US Residential");
+	    
 	    
 	    String bodyText0 = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
 		Assert.assertTrue(bodyText0.contains("On-Site Estimate Booked"));

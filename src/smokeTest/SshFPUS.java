@@ -187,9 +187,9 @@ public class SshFPUS {
 				ExpectedConditions.elementToBeClickable(ACCOUNT_COUNTRY));
 				inputCountry.sendKeys(TEST_USER_COUNTRY);
 		
-		/* WebElement inputCopyBillingAddress = wait.until(
+		WebElement inputCopyBillingAddress = wait.until(
 				ExpectedConditions.elementToBeClickable(COPY_BILLING_ADDRESS_CHECKBOX));
-				inputCopyBillingAddress.click(); */
+				inputCopyBillingAddress.click(); 
 
 		WebElement saveAccount = wait.until(
 				ExpectedConditions.elementToBeClickable(ACCOUNT_SAVE));
@@ -240,6 +240,11 @@ public class SshFPUS {
 				confirmBooking.click();
 				
 	    Thread.sleep(4000);
+	    
+	    String bodyText2 = driver.findElement(By.id("lookup01s15000001zfzFPricebook2")).getText();
+		Assert.assertTrue(bodyText2.contains("Test Franchise USA - SSH Residential"));
+		System.out.println("Opportunity has correct pricebook: US Residential");
+
 	    
 	    String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
 		Assert.assertTrue(bodyText.contains("On-Site Estimate Booked"));

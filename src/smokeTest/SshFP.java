@@ -241,6 +241,11 @@ public class SshFP {
 				
 	    Thread.sleep(4000);
 	    
+	    String bodyText2 = driver.findElement(By.id("lookup01s15000001zfs3Pricebook2")).getText();
+		Assert.assertTrue(bodyText2.contains("Test Franchise Canada - SSH Residential"));
+		System.out.println("Opportunity has correct pricebook: CA Residential");
+
+	    
 	    String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
 		Assert.assertTrue(bodyText.contains("On-Site Estimate Booked"));
 		System.out.println("Status is correct: On-Site Estimate Booked");

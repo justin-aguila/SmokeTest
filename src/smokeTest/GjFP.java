@@ -247,11 +247,18 @@ public class GjFP {
 				
 				Thread.sleep(5000);
 		
+				
+			String bodyText2 = driver.findElement(By.id("lookup01s15000001zfzUPricebook2")).getText();
+			Assert.assertTrue(bodyText2.contains("Test Franchise Canada - GJ Residential"));
+			System.out.println("Opportunity has correct pricebook: CA Residential");
+			//PIP-909  Assertion 
 			
 			String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
 			Assert.assertTrue(bodyText.contains("On-Site Estimate Booked"));
 			System.out.println("Status is correct: On-Site Estimate Booked");
-
+			//PIP-909 Assertion
+			
+		
 				
 	    Thread.sleep(2000);
 					
@@ -357,6 +364,7 @@ public class GjFP {
 						String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
 						Assert.assertTrue(bodyText.contains("Estimate Presented"));
 						System.out.println("Status is correct: Estimate Presented");
+						//Assertion
 	
 		
 	}
@@ -389,6 +397,7 @@ public class GjFP {
 					String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
 					Assert.assertTrue(bodyText.contains("Paid"));
 					System.out.println("Status is correct: Paid");
+					//Assertion
 			
 			
 		}

@@ -64,9 +64,9 @@ public class GjFPUS {
 	final By CONFIRM_BOOKING = By.xpath("//*[@id=\"topButtonRow\"]/input[8]");
 	final By NAV_TO_ESTIMATE = By.xpath("//a[contains(text(),'1-800-GOT-JUNK? - QA Justin AutoTest')]");
 	final By ADD_LINE_ITEM = By.xpath("//input[@title='Add Line Item']");
-	final By FIRST_LINE_ITEM = By.id("01u1500000PakLD");
+	final By FIRST_LINE_ITEM = By.id("01u1500000PakbC");
 	final By ESTIMATE_SELECT = By.xpath("//input[@title='Select']");
-	final By QUANTITY_FIELD = By.id("Quantity01u1500000PakLD");
+	final By QUANTITY_FIELD = By.id("Quantity01u1500000PakbC");
 	final By ESTIMATE_SAVE = By.xpath("//input[@title='Save']");
 	final By ESTIMATE_EDIT = By.xpath("//input[@title='Edit']");
 	final By PROMO_FIELD = By.id("CF00N1500000H6ank");
@@ -246,11 +246,16 @@ public class GjFPUS {
 				confirmBooking.click();
 				
 				Thread.sleep(5000);
-		
+				
+			String bodyText2 = driver.findElement(By.id("lookup01s15000001zgEWPricebook2")).getText();
+			Assert.assertTrue(bodyText2.contains("Test Franchise USA - GJ Residential"));
+			System.out.println("Opportunity has correct pricebook: US Residential");
+			//PIP-909
 			
 			String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
 			Assert.assertTrue(bodyText.contains("On-Site Estimate Booked"));
 			System.out.println("Status is correct: On-Site Estimate Booked");
+			//PIP-909
 
 				
 	    Thread.sleep(2000);
