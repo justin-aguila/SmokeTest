@@ -177,10 +177,6 @@ public class SshObeUS {
 	
 
 				
-	String bodyText = driver.findElement(By.xpath("/html/body/div[2]/main/div")).getText();
-		Assert.assertTrue(bodyText.contains("Thank you!"));
-		System.out.println("Thank you message was displayed.");
-				
 		}
 
 	
