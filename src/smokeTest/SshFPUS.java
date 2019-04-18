@@ -60,7 +60,7 @@ public class SshFPUS {
 	final By NAVIGATE_TO_OPPORTUNITY = By.xpath("//a[contains(text(),'Back to Shack Shine')]");
 	final By CLICK_GET_APPOINTMENTS = By.xpath("//*[@id=\"AN-BookAppointmentForm\"]/div[8]");
 	final By SELECT_APPOINTMENT = By.xpath("//*[@id=\"AN-SlotsContainer\"]/div[5]/div[2]");
-	final By CONFIRM_BOOKING = By.xpath("//*[@id=\"topButtonRow\"]/input[9]");
+	final By CONFIRM_BOOKING = By.xpath("//input[@title='Confirm Booking']");
 	final By NAV_TO_ESTIMATE = By.xpath("//a[contains(text(),'Shack Shine - QA Justin AutoTest')]");
 	final By ADD_LINE_ITEM = By.xpath("//input[@title='Add Line Item']");
 	final By FIRST_LINE_ITEM = By.id("01u1500000Pak6R");

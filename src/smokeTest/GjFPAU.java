@@ -61,7 +61,7 @@ public class GjFPAU {
 	final By NAVIGATE_TO_OPPORTUNITY = By.xpath("//a[contains(text(),'Back to 1-800-GOT-JUNK?')]");
 	final By CLICK_GET_APPOINTMENTS = By.xpath("//*[@id=\"AN-BookAppointmentForm\"]/div[7]");
 	final By SELECT_APPOINTMENT = By.xpath("//*[@id=\"AN-SlotsContainer\"]/div[5]/div[2]");
-	final By CONFIRM_BOOKING = By.xpath("//*[@id=\"topButtonRow\"]/input[8]");
+	final By CONFIRM_BOOKING = By.xpath("//input[@title='Confirm Booking']");
 	final By NAV_TO_ESTIMATE = By.xpath("//a[contains(text(),'1-800-GOT-JUNK? - QA Justin AutoTest')]");
 	final By ADD_LINE_ITEM = By.xpath("//input[@title='Add Line Item']");
 	final By FIRST_LINE_ITEM = By.id("01u1500000Pakgk");

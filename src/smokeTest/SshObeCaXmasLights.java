@@ -43,6 +43,7 @@ public class SshObeCaXmasLights {
 	final String CHRISTMAS_SEARCH = "Christmas";
 	final String LINE_ITEM_QUANTITY1 = "100";
 	final String LINE_ITEM_QUANTITY2 = "100";
+	final String CANCELED_STATUS = "Canceled";
 
 
 
@@ -58,6 +59,7 @@ public class SshObeCaXmasLights {
 	final By DAY_SELECTION = By.xpath("//*[@id=\"edit-wrapper3--2\"]/div/div[3]/label/div");
 	final By TIME_SELECTION = By.xpath("//*[@id=\"edit-day3-afternoon-appointments--2\"]/div[1]/label");
 	final By ADDRESS_BOX = By.id("street_number");
+	final By NAVIGATE_TO_OPPORTUNITY = By.xpath("//a[contains(text(),'Back to Shack Shine')]");
 	final By CITY_BOX = By.id("route");
 	final By STATE_BOX = By.id("administrative_area_level_1");
 	final By FIRSTNAME_BOX = By.id("edit-first-name");
@@ -66,7 +68,7 @@ public class SshObeCaXmasLights {
 	final By PHONE_BOX1 = By.id("edit-phone");
 	final By CLICK_GET_APPOINTMENTS = By.xpath("//*[@id=\"AN-BookAppointmentForm\"]/div[8]");
 	final By SELECT_APPOINTMENT = By.xpath("//*[@id=\"AN-SlotsContainer\"]/div[5]/div[2]");
-	final By CONFIRM_BOOKING = By.xpath("//*[@id=\"topButtonRow\"]/input[9]");
+	final By CONFIRM_BOOKING = By.xpath("//input[@title='Confirm Booking']");
 	final By SECOND_SERVICE = By.xpath("//*[@id=\"AN-ResultsContainer\"]/div[2]");
 	final By SEARCHBOX = By.id("phSearchInput");
 	final By SEARCH_BUTTON = By.id("phSearchButton");
@@ -82,6 +84,11 @@ public class SshObeCaXmasLights {
 	final By QUANTITY_FIELD1 = By.id("Quantity01u1500000PA7Vj");
 	final By QUANTITY_FIELD2 = By.id("Quantity01u1C00000PuN6G");
 	final By ESTIMATE_SELECT = By.xpath("//input[@title='Select']");
+	final By SERVICE = By.xpath("//a[contains(text(),'S-')]");
+	final By SEND_RESCHEDULE = By.xpath("//*[@id=\"topButtonRow\"]/input[7]");
+	final By EDIT_BUTTON = By.xpath("//input[@title='Edit']");
+	final By STATUS_FIELD = By.id("00N1500000EPC2G");
+	final By SAVE_BUTTON = By.xpath("//input[@title='Save']");
 
 
 
@@ -303,9 +310,6 @@ public class SshObeCaXmasLights {
 				ExpectedConditions.elementToBeClickable(CONFIRM_BOOKING));
 				confirmBooking.click();
 				
-		String bodyText = driver.findElement(By.id("00N1500000H6ak1_ileinner")).getText();
-		Assert.assertTrue(bodyText.contains("On-Site Estimate Booked"));
-		System.out.println("Status is correct: On-Site Estimate Booked");
 				
 	    Thread.sleep(3000);
 
@@ -356,6 +360,29 @@ public void EstimateWorkflow() throws InterruptedException {
 						ExpectedConditions.elementToBeClickable(ESTIMATE_SAVE));
 						saveEstimate.click();
 						
+		WebElement navigateOpportunity = wait.until(
+						ExpectedConditions.elementToBeClickable(NAVIGATE_TO_OPPORTUNITY));
+						navigateOpportunity.click();
+						
+	}
+
+	public void CancelService () throws InterruptedException {
+		
+		WebElement servClick = wait.until(
+				ExpectedConditions.elementToBeClickable(SERVICE));
+				servClick.click();
+				
+		WebElement editClick = wait.until(
+				ExpectedConditions.elementToBeClickable(EDIT_BUTTON));
+				editClick.click();
+				
+			
+		Select statusType2 = new Select(driver.findElement(By.id("00N1500000EPC2G")));
+				   statusType2.selectByVisibleText("Canceled");
+				   
+		WebElement saveClick = wait.until(
+					ExpectedConditions.elementToBeClickable(SAVE_BUTTON ));
+					saveClick.click();
 	}
 
 	
@@ -363,7 +390,7 @@ public void EstimateWorkflow() throws InterruptedException {
 	@Test
 	public void CompleteOpportunity() throws InterruptedException {
 		
-		driver.get(SITE_URL);
+	 /* driver.get(SITE_URL);
 		
 		stepZero();
 		
@@ -371,7 +398,7 @@ public void EstimateWorkflow() throws InterruptedException {
 		
 		stepTwo();
 		
-		stepThree(); 
+		stepThree();    */
 		
 		driver.get(SITE_URL2); 
 		
@@ -382,6 +409,8 @@ public void EstimateWorkflow() throws InterruptedException {
 		scheduleService();
 		
 		EstimateWorkflow();
+		
+		CancelService();
 		
 		
 		//driver.quit();

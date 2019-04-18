@@ -97,6 +97,8 @@ public class W1dSCUS {
 
 		driver.switchTo().frame("ext-comp-1005");
 		
+		Thread.sleep(1000);
+		
 		WebElement zipInput = wait.until(
 				ExpectedConditions.elementToBeClickable(ZIP_BOX));
 				zipInput.sendKeys(ZIPFIELD);
