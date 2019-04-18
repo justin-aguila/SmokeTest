@@ -87,6 +87,26 @@ public class W1dFP {
 	final By COGS_AMOUNT_FIELD = By.id("00N1500000H6agM");
 	final By SAVE_NEW_COGS = By.xpath("//input[@name='save_new']");
 	final By COGS_SAVE = By.xpath("//input[@title='Save']");
+	final By PAINT_DETAIL_BUTTON = By.xpath("//input[@title='New Paint Detail']");
+	final By SAVE_BUTTON = By.xpath("//input[@title='Save']");
+	
+	
+	//Paint Detail
+	
+	final String AREA_DATA ="100";
+	final String SUPPLIER_DATA ="Dulux";
+	final String PRODUCT_DATA ="Paint Product Test";
+	final String SHEEN_DATA ="High Gloss";
+	final String COLOR_DATA ="Blue";
+	final String QUANTITY_DATA ="20";
+
+
+	final By AREA_FIELD = By.id("00N1500000H6alf");
+	final By SUPPLIER_FIELD = By.id("00N1500000H8yAM");
+	final By PRODUCT_FIELD = By.id("00N1500000H8yAL");
+	final By SHEEN_FIELD = By.id("00N1500000H6ali");
+	final By COLOR_FIELD = By.id("00N1500000H6alg");
+	final By QUANTITY_PAINT_FIELD = By.id("00N1500000IhuY6");
 	
 	
 	@BeforeMethod
@@ -295,6 +315,56 @@ public class W1dFP {
 						saveEstimate.click();
 						
 	}
+	
+	
+	public void PaintDetail() throws InterruptedException {
+		
+		WebElement paintDetail = wait.until(
+				ExpectedConditions.elementToBeClickable(PAINT_DETAIL_BUTTON));
+				paintDetail.click();
+		
+		
+		WebElement areaFill = wait.until(
+				ExpectedConditions.elementToBeClickable(AREA_FIELD));
+				areaFill.sendKeys(AREA_DATA); 
+
+
+		Select supplierSelect= new Select(driver.findElement(SUPPLIER_FIELD));
+                supplierSelect.selectByVisibleText("Dulux");
+
+
+        WebElement productFill = wait.until(
+				ExpectedConditions.elementToBeClickable(PRODUCT_FIELD));
+				productFill.sendKeys(PRODUCT_DATA); 
+
+		Select sheenSelect= new Select(driver.findElement(SHEEN_FIELD));
+				sheenSelect.selectByVisibleText("High Gloss");
+
+
+		WebElement colorFill = wait.until(
+				ExpectedConditions.elementToBeClickable(COLOR_FIELD));
+				colorFill.sendKeys(COLOR_DATA); 
+
+
+		WebElement quantityFill = wait.until(
+				ExpectedConditions.elementToBeClickable(QUANTITY_PAINT_FIELD));
+				quantityFill.sendKeys(QUANTITY_DATA); 
+				
+				
+		WebElement saveClick = wait.until(
+					ExpectedConditions.elementToBeClickable(SAVE_BUTTON));
+					saveClick.click();
+					
+		Thread.sleep(1000);			
+					
+		WebElement navigateOpportunity2 = wait.until(
+					ExpectedConditions.elementToBeClickable(NAVIGATE_TO_OPPORTUNITY));
+					navigateOpportunity2.click();
+				
+
+		
+		
+	}
 						
 	
 		/*SDOCS*/
@@ -400,6 +470,37 @@ public class W1dFP {
 			
 		}
 		
+	
+		public void PaintingService() throws InterruptedException {
+			
+		
+			Thread.sleep(2500);
+			
+			driver.switchTo().frame("09D15000001SVUf_06615000003N7hK");
+			
+			Select ServiceType = new Select(driver.findElement(By.id("AN-ServiceTypeInput")));
+			   ServiceType.selectByVisibleText("W1D - Painting");
+			
+			WebElement getAppointment = wait.until(
+					ExpectedConditions.elementToBeClickable(CLICK_GET_APPOINTMENTS));
+					getAppointment.click();
+			
+			Thread.sleep(7000);
+			
+			WebElement selectAppointment = wait.until(
+					ExpectedConditions.elementToBeClickable(SELECT_APPOINTMENT));
+					selectAppointment.click();
+			
+			driver.switchTo().defaultContent();
+			
+			Thread.sleep(2000);
+			
+			WebElement confirmBooking = wait.until(
+					ExpectedConditions.elementToBeClickable(CONFIRM_BOOKING));
+					confirmBooking.click();
+		}
+		
+		
 		
 		public void PaymentWorkflow() throws InterruptedException {
 			
@@ -428,6 +529,8 @@ public class W1dFP {
 			System.out.println("Status is correct: Paid");
 			
 			
+			Thread.sleep(3000);
+			
 		}
 	
 	
@@ -447,13 +550,17 @@ public class W1dFP {
 		
 		EstimateWorkflow();
 		
+		PaintDetail();
+		
 		SdocWorkflow();
 		
 		COGSWorkflow();
 		
+		PaintingService();
+		
 		PaymentWorkflow();
 		
-		//driver.quit();
+		driver.quit();
 		
 	}
 
