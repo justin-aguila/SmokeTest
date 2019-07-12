@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import org.openqa.selenium.support.ui.Select;
 
 
-public class W1dObeUS {
+public class W1dObeUSCommercial {
 
 	ChromeDriver driver;
 	WebDriverWait wait;
@@ -39,7 +39,7 @@ public class W1dObeUS {
 	
 	final By ZIP_BOX = By.id("edit-zipcode");
 	final By GO_BUTTON = By.id("edit-submit");
-	final By INTERIOR_CHECK = By.xpath("//label[contains(text(),'Inside my home')]");   
+	final By INTERIOR_CHECK = By.xpath("//label[contains(text(),'Commercial')]");       
 	final By TEXT_BOX = By.id("edit-details");
 	final By DAY_SELECTION = By.xpath("//*[@id=\"edit-wrapper3--2\"]/div/div[2]/label/div");
 	final By TIME_SELECTION = By.xpath("//*[@id=\"edit-day3-morning-appointments--2\"]/div[1]/label");
